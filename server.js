@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
-const questions = require("./questions.json");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
+const questions = require("./questions.json");
+ // new update
 app.use(cors({
     origin: "http://127.0.0.1:5500",
 }));
@@ -16,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.send("Hello, welcome to the quiz API!");
+    res.send("Hello, welcome to the quiz app");
 });
 
 app.get("/questions", (req, res) => {
