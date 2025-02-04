@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const questions = require("./questions.json");
-
+ // new update
 app.use(cors({
     origin: "http://127.0.0.1:5500",
 }));
