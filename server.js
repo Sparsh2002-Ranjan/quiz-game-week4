@@ -5,15 +5,17 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 const questions = require("./questions.json");
- // new update
+
 app.use(cors({
-    origin: "http://127.0.0.1:5500",
+origin: "http://127.0.0.1:5500",
 }));
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
