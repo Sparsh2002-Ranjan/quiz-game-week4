@@ -7,11 +7,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Quiz Game</h1>
-    
-  // Write your code from here 
-
-
+  <div class="container">
+    <div id="start-screen">
+      <h1>Welcome to the Quiz Game!</h1>
+      <button id="start-btn">Start Quiz</button>
+    </div>
+    <div id="quiz-screen" class="hide">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <div id="result-screen" class="hide">
+      <h2>Quiz Completed!</h2>
+      <p>Your score: <span id="score"></span>/10</p>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
