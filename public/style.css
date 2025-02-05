@@ -7,7 +7,7 @@ body {
     min-height: 100vh;
     margin: 0;
   }
-  .container {
+  .cont {
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -40,7 +40,7 @@ body {
   .options button:hover {
     background-color: #0056b3;
   }
-  #start-btn {
+  #st-btn {
     background-color: #28a745;
     color: white;
     padding: 10px 20px;
@@ -49,6 +49,6 @@ body {
     font-size: 1.2em;
     cursor: pointer;
   }
-  #start-btn:hover {
+  #st-btn:hover {
     background-color: #218838;
   }

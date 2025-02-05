@@ -6,12 +6,12 @@ let currentQuestionIndex = 0;
 let score = 0;
 let selectedQuestions = [];
 
-const startBtn = document.getElementById('start-btn');
-const startScreen = document.getElementById('start-screen');
-const quizScreen = document.getElementById('quiz-screen');
-const resultScreen = document.getElementById('result-screen');
-const questionElement = document.getElementById('question');
-const optionsElement = document.getElementById('options');
+const startBtn = document.getElementById('st-btn');
+const startScreen = document.getElementById('start');
+const quizScreen = document.getElementById('quiz');
+const resultScreen = document.getElementById('result');
+const questionElement = document.getElementById('que');
+const optionsElement = document.getElementById('opt');
 const scoreElement = document.getElementById('score');
 
 async function fetchQuestions() {
