@@ -2,69 +2,69 @@
 
 const questionsUrl = 'http://localhost:5000/questions';
 let questions = [];
-let currentQuestionIndex = 0;
+let curqueidx = 0;
 let score = 0;
-let selectedQuestions = [];
-let incorrectAnswers = 0;
-let timer; // Timer variable
-let timeLeft = 60; // 1 minute timer for the quiz
-let progressBar = document.getElementById('progress-bar'); // Assuming a progress bar in the HTML
-let timerElement = document.getElementById('timer'); // Assuming a timer display in the HTML
+let selque = [];
+let incans = 0;
+let time;
+let timeLeft = 60;
+let prog = document.getElementById('progress-bar');
+let timer = document.getElementById('time'); 
 
 const startBtn = document.getElementById('st-btn');
-const startScreen = document.getElementById('start');
-const quizScreen = document.getElementById('quiz');
-const resultScreen = document.getElementById('result');
-const questionElement = document.getElementById('que');
-const optionsElement = document.getElementById('opt');
-const scoreElement = document.getElementById('score');
+const startScr = document.getElementById('start');
+const quizScr = document.getElementById('quiz');
+const resultScr = document.getElementById('result');
+const queEle = document.getElementById('que');
+const optEle = document.getElementById('opt');
+const scrEle = document.getElementById('score');
 
 async function fetchQuestions() {
   try {
     const response = await fetch("http://localhost:5000/questions");
     const data = await response.json();
     questions = data;
-    selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
+    selque = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
   } catch (error) {
     console.error('Error fetching questions:', error);
   }
 }
 
 function startQuiz() {
-  startScreen.classList.add('hide');
-  quizScreen.classList.remove('hide');
+  startScr.classList.add('hide');
+  quizScr.classList.remove('hide');
   showQuestion();
   startTimer();
 }
 
 function startTimer() {
-  timer = setInterval(() => {
+  time = setInterval(() => {
     if (timeLeft <= 0) {
-      clearInterval(timer);
+      clearInterval(time);
       endQuiz();
     } else {
       timeLeft--;
-      timerElement.textContent = `Time Left: ${timeLeft}s`;
+      timer.textContent = `Time Left: ${timeLeft}s`;
       updateProgressBar();
     }
   }, 1000);
 }
 
 function updateProgressBar() {
-  const progress = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
-  progressBar.style.width = `${progress}%`;
+  const progress = ((curqueidx + 1) / selque.length) * 100;
+  prog.style.width = `${progress}%`;
 }
 
 function showQuestion() {
-  if (currentQuestionIndex < selectedQuestions.length) {
-    const currentQuestion = selectedQuestions[currentQuestionIndex];
-    questionElement.textContent = currentQuestion.question;
-    optionsElement.innerHTML = '';
+  if (curqueidx < selque.length) {
+    const currentQuestion = selque[curqueidx];
+    queEle.textContent = currentQuestion.question;
+    optEle.innerHTML = '';
     currentQuestion.options.forEach(option => {
       const button = document.createElement('button');
       button.textContent = option;
       button.addEventListener('click', () => selectAnswer(option));
-      optionsElement.appendChild(button);
+      optEle.appendChild(button);
     });
   } else {
     endQuiz();
@@ -72,23 +72,23 @@ function showQuestion() {
 }
 
 function selectAnswer(selectedOption) {
-  const currentQuestion = selectedQuestions[currentQuestionIndex];
+  const currentQuestion = selque[curqueidx];
   if (selectedOption === currentQuestion.answer) {
     score++;
   } else {
-    incorrectAnswers++; // Track incorrect answers
+    incans++; 
   }
-  currentQuestionIndex++;
+  curqueidx++;
   showQuestion();
 }
 
 function endQuiz() {
-  clearInterval(timer); // Stop the timer when the quiz ends
-  quizScreen.classList.add('hide');
-  resultScreen.classList.remove('hide');
-  scoreElement.textContent = `Score: ${score}`;
+  clearInterval(time); 
+  quizScr.classList.add('hide');
+  resultScr.classList.remove('hide');
+  scrEle.textContent = `Score: ${score}`;
   const incorrectElement = document.getElementById('incorrect-answers');
-  incorrectElement.textContent = `Incorrect Answers: ${incorrectAnswers}`;
+  incorrectElement.textContent = `Incorrect Answers: ${incans}`;
 }
 
 startBtn.addEventListener('click', async () => {
